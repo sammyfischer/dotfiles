@@ -16,7 +16,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require('config.lazy') -- lazy.nvim setup in ./lua/plugins
-require('lualine').setup()
 
 -- mini.nvim plugins
 require('mini.ai').setup()
