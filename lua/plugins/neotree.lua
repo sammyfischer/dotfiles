@@ -56,8 +56,15 @@ return {
             },
           },
         }
-      }
+
+      if vscode then
+        vim.keymap.set('n', '<leader>e', function()
+          vscode.call('workbench.files.action.focusFilesExplorer')
+          vscode.call('workbench.view.explorer')
+        end)
+      else
       vim.keymap.set('n', '<leader>e', ':Neotree action=focus source=filesystem position=left<CR>')
     end
-  }
+    end,
+  },
 }
