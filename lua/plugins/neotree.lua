@@ -1,16 +1,14 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
       -- { "3rd/image.nvim", opts = {} }, -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     lazy = false, -- neo-tree will lazily load itself
-    ---@module "neo-tree"
-    ---@type neotree.Config?
 
     opts = {
 
@@ -21,8 +19,8 @@ return {
           hide_dotfiles = false,
           hide_hidden = false,
           never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            ".DS_Store",
-            "thumbs.db",
+            '.DS_Store',
+            'thumbs.db',
           },
         },
       },
@@ -34,16 +32,16 @@ return {
         },
 
         indent = {
-          with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "+",
-          expander_expanded = "-",
-          expander_highlight = "NeoTreeExpander",
-        }
+          with_expanders = true,
+          expander_collapsed = '',
+          expander_expanded = '',
+          expander_highlight = 'NeoTreeExpander',
+        },
       },
     },
 
     config = function()
-      require("neo-tree").setup {
+      require('neo-tree').setup {
         filesystem = {
           filtered_items = {
             visible = true,
@@ -51,11 +49,12 @@ return {
             hide_dotfiles = false,
             hide_hidden = false,
             never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-              ".DS_Store",
-              "thumbs.db",
+              '.DS_Store',
+              'thumbs.db',
             },
           },
-        }
+        },
+      }
 
       if vscode then
         vim.keymap.set('n', '<leader>e', function()
@@ -63,8 +62,8 @@ return {
           vscode.call('workbench.view.explorer')
         end)
       else
-      vim.keymap.set('n', '<leader>e', ':Neotree action=focus source=filesystem position=left<CR>')
-    end
+        vim.keymap.set('n', '<leader>e', ':Neotree action=focus source=filesystem position=left<CR>')
+      end
     end,
   },
 }
