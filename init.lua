@@ -15,36 +15,11 @@ vim.g.maplocalleader = ' '
 
 selected_theme = 'tokyonight-night' -- set theme name here
 
---[[
-check if vscode-neovim is being used
-
-useful editor actions:
-editor.action.formatDocument
-editor.action.commentLine
-workbench.action.navigateBack / ...Forward
-
-example:
-vscode.action('editor.action.commentLine')
-
-vscode actions:
-vscode.action() - async
-vscode.call(name, opts, timeout) - sync
-
-notificatiions:
-vscode.notify(msg) - send actual vscode notification
-vim.notify = vscode.notify - sets vscode's notifications to be the default
---]]
+vscode = nil
 local ok, vsc = pcall(require, 'vscode')
-if ok then
-    vsc.notify('Loading VSCode config')
-else
-    vsc = nil
-end
-vscode = vsc -- expose as global
+if ok then vscode = vsc end
 
-require('keybinds')                   -- set keybinds in ./lua/keybinds.lua
-require('config.lazy')                -- most plugin/theme related things should be done after this
+require('keybinds')    -- set keybinds in ./lua/keybinds.lua
+require('config.lazy') -- most plugin/theme related things should be done after this
 
 vim.cmd('colorscheme ' .. selected_theme)
-
--- language server setup
