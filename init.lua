@@ -20,7 +20,3 @@ require('config.lazy') -- most plugin/theme related things should be done after 
 vim.cmd('colorscheme ' .. selected_theme)
 
 -- language server setup
-vim.lsp.enable('luals')
-vim.lsp.enable('volar')
-vim.lsp.enable('ts_ls')
-
