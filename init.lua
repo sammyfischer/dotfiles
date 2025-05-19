@@ -13,7 +13,7 @@ vim.o.background = 'dark' -- used by some themes to set dark/light mode
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-selected_theme = 'tokyonight-night' -- set theme name here
+selected_theme = 'carbonfox' -- set theme name here
 
 vscode = nil
 local ok, vsc = pcall(require, 'vscode')
