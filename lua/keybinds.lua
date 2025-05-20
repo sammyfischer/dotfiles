@@ -10,6 +10,8 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<leader>w', ':w<CR>')  -- save
 vim.keymap.set('n', '<leader>W', ':wa<CR>') -- save all
 
+vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-n>') -- exit terminal mode
+
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 vim.keymap.set('n', 'ss', 's', { noremap = true })
