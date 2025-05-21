@@ -1,14 +1,20 @@
 vim.keymap.set({ 'n', 'x' }, 'H', '^')  -- home
 vim.keymap.set({ 'n', 'x' }, 'L', 'g_') -- end
 
+-- better copy/paste
+vim.keymap.set({ 'n', 'x' }, 'd', '"_d', { noremap = true }) -- d deletes w/o copying
+vim.keymap.set('n', 'X', 'x', { noremap = true }) -- change x to X
+vim.keymap.set('n', 'x', '"*d', { noremap = true })          -- x to cut
+vim.keymap.set('n', 'xx', '"*dd', { noremap = true })        -- xx to cut line
+
 -- window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
-vim.keymap.set('n', '<leader>w', ':w<CR>')  -- save
-vim.keymap.set('n', '<leader>W', ':wa<CR>') -- save all
+vim.keymap.set('n', '<leader>w', ':w<CR>')         -- save
+vim.keymap.set('n', '<leader>W', ':wa<CR>')        -- save all
 
 vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-n>') -- exit terminal mode
 
