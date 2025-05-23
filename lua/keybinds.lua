@@ -15,8 +15,8 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
-map('n', '<leader>w', ':w<CR>')  -- save
-map('n', '<leader>W', ':wa<CR>') -- save all
+map('n', '<leader>w', '<Cmd>w<CR>')  -- save
+map('n', '<leader>W', '<Cmd>wa<CR>') -- save all
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
