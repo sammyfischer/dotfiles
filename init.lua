@@ -15,3 +15,9 @@ require('keybinds')
 require('config.lazy')
 
 vim.cmd('colorscheme ' .. selected_theme)
+
+-- when TERM_MODE is set, open a single term buffer
+if vim.env.TERM_MODE then
+  vim.cmd('terminal')
+  vim.cmd('Neotree action=show source=buffers position=left')
+end

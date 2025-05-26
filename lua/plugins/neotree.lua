@@ -32,9 +32,17 @@ return {
     },
 
     config = function()
-      require('neo-tree').setup {
-        -- for some reason, setting this in opts doesn't work
-        filesystem = {
+      -- in terminal mode, only show buffers
+      local opts = {}
+
+      opts.sources = { 'filesystem', 'buffers', 'git_status' }
+      if vim.env.TERM_MODE then
+        -- in term mode, only use buffers source
+        opts.sources = { 'buffers' }
+        opts.default_source = 'buffers'
+      else
+        -- not in term mode, we can configure the filesystem source
+        opts.filesystem = {
           filtered_items = {
             visible = true,
             hide_gitignored = true,
@@ -45,8 +53,11 @@ return {
               'thumbs.db',
             },
           },
-        },
-      }
+
+        }
+      end
+
+      require('neo-tree').setup(opts)
     end,
   },
 }

@@ -23,5 +23,5 @@ require('lazy').setup {
     { import = 'themes' },
   },
   install = { colorscheme = { selected_theme } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
 }
