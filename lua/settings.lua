@@ -36,3 +36,9 @@ else
   -- bash elsewhere
   vim.o.shell = '/bin/bash'
 end
+
+-- open help windows to the right by default
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  command = "wincmd L"
+})

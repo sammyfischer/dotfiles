@@ -13,7 +13,6 @@ return {
       require('mini.snippets').setup()
       require('mini.splitjoin').setup()
       require('mini.surround').setup()
-      require('mini.tabline').setup()
     end,
   },
 }
