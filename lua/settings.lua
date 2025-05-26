@@ -27,3 +27,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank({ timeout = 400 })
   end,
 })
+
+-- set default shell
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+  -- powershell on windows
+  vim.o.shell = 'powershell.exe'
+else
+  -- bash elsewhere
+  vim.o.shell = '/bin/bash'
+end
