@@ -15,14 +15,19 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
-map('n', '<leader>w', '<Cmd>w<CR>')  -- save
-map('n', '<leader>W', '<Cmd>wa<CR>') -- save all
+-- write buffer
+map('n', '<leader>w', '<Cmd>w<CR>')
+map('n', '<leader>W', '<Cmd>wa<CR>')
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 map({ 'n', 'x' }, 'ss', 's', { noremap = true })
 
-map('t', '<C-\\><C-\\>', '<C-\\><C-n>') -- exit terminal mode
+-- exit terminal mode
+map('t', '<C-\\><C-\\>', '<C-\\><C-n>')
+
+-- focus neotree file explorer
+map('n', '<leader>e', '<Cmd>Neotree action=focus source=filesystem position=left<CR>')
 
 -- vscode specific keybinds
 if vscode then
@@ -36,8 +41,9 @@ if vscode then
     vscode.action('editor.action.rename')
   end)
 
-  -- should bring up and focus the file explorer, but currently only brings it up if it's not visible
+  -- focus vscode file explorer instead of neotree
   map('n', '<leader>e', function()
-    vscode.action('workbench.files.action.focusFilesExplorer')
+    vscode.call('workbench.view.explorer')
+    vscode.call('workbench.files.action.focusFilesExplorer')
   end)
 end

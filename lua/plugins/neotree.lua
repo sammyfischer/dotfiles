@@ -4,26 +4,12 @@ return {
     branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
-      -- { "3rd/image.nvim", opts = {} }, -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     lazy = false, -- neo-tree will lazily load itself
 
     opts = {
-
-      filesystem = {
-        filtered_items = {
-          visible = true,
-          hide_gitignored = true,
-          hide_dotfiles = false,
-          hide_hidden = false,
-          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            '.DS_Store',
-            'thumbs.db',
-          },
-        },
-      },
 
       close_if_last_window = false,
       default_component_configs = {
@@ -38,32 +24,29 @@ return {
           expander_highlight = 'NeoTreeExpander',
         },
       },
+
+      source_selector = {
+        winbar = true,
+        statusline = false,
+      },
     },
 
     config = function()
       require('neo-tree').setup {
+        -- for some reason, setting this in opts doesn't work
         filesystem = {
           filtered_items = {
             visible = true,
             hide_gitignored = true,
             hide_dotfiles = false,
             hide_hidden = false,
-            never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+            never_show = {
               '.DS_Store',
               'thumbs.db',
             },
           },
         },
       }
-
-      if vscode then
-        vim.keymap.set('n', '<leader>e', function()
-          vscode.call('workbench.files.action.focusFilesExplorer')
-          vscode.call('workbench.view.explorer')
-        end)
-      else
-        vim.keymap.set('n', '<leader>e', ':Neotree action=focus source=filesystem position=left<CR>')
-      end
     end,
   },
 }
