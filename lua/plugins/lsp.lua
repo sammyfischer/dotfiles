@@ -7,7 +7,10 @@ local on_attach = function(_, buf)
       function()
         vim.lsp.buf.format()
       end,
-      { buffer = buf }
+      {
+        buffer = buf,
+        desc = 'LSP format code'
+      }
     )
   end
 end
@@ -24,8 +27,8 @@ return {
     'mason-org/mason-lspconfig.nvim',
     lazy = false,
     opts = {
-      ensure_installed = { 'lua_ls', 'vue_ls', 'ts_ls' }
-    }
+      ensure_installed = { 'lua_ls', 'vue_ls', 'ts_ls' },
+    },
   },
 
   {

@@ -27,23 +27,38 @@ map({ 'n', 'x' }, 'ss', 's', { noremap = true })
 map('t', '<C-\\><C-\\>', '<C-\\><C-n>')
 
 -- focus neotree file explorer
-map('n', '<leader>e', '<Cmd>Neotree action=focus source=filesystem position=left<CR>')
+map(
+  'n',
+  '<leader>e',
+  '<Cmd>Neotree action=focus source=filesystem position=left<CR>',
+  { desc = 'Open and focus Neotree filesystem' }
+)
 
 -- vscode specific keybinds
 if vscode then
   -- format code
   map('n', '<leader>f', function()
-    vscode.action('editor.action.formatDocument')
+    vscode.action('editor.action.formatDocument', { desc = 'VS Code format code' })
   end)
 
   -- rename symbol
-  map('n', '<leader>r', function()
-    vscode.action('editor.action.rename')
-  end)
+  map(
+    'n',
+    '<leader>r',
+    function()
+      vscode.action('editor.action.rename')
+    end,
+    { desc = 'VS Code rename symbol' }
+  )
 
   -- focus vscode file explorer instead of neotree
-  map('n', '<leader>e', function()
-    vscode.call('workbench.view.explorer')
-    vscode.call('workbench.files.action.focusFilesExplorer')
-  end)
+  map(
+    'n',
+    '<leader>e',
+    function()
+      vscode.call('workbench.view.explorer')
+      vscode.call('workbench.files.action.focusFilesExplorer')
+    end,
+    { desc = 'VS Code open and focus file explorer' }
+  )
 end
