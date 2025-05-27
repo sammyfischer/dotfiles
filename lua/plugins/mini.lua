@@ -11,7 +11,13 @@ return {
       require('mini.move').setup()
       require('mini.pairs').setup()
       require('mini.snippets').setup()
-      require('mini.splitjoin').setup()
+      require('mini.splitjoin').setup {
+        mappings = {
+          toggle = 'gs',
+          join = 'gj',
+          split = 'gS',
+        },
+      }
       require('mini.surround').setup()
     end,
   },
