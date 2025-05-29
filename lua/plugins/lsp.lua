@@ -1,3 +1,11 @@
+local ensure_installed = {
+  'bashls',
+  'lua_ls',
+  'pyright',
+  'ts_ls',
+  'vue_ls',
+}
+
 local on_attach = function(_, buf)
   -- for vscode, <leader>f calls the vscode format action
   if not vscode then
@@ -9,7 +17,7 @@ local on_attach = function(_, buf)
       end,
       {
         buffer = buf,
-        desc = 'LSP format code'
+        desc = 'LSP format code',
       }
     )
   end
@@ -26,9 +34,7 @@ return {
   {
     'mason-org/mason-lspconfig.nvim',
     lazy = false,
-    opts = {
-      ensure_installed = { 'lua_ls', 'vue_ls', 'ts_ls' },
-    },
+    opts = { ensure_installed = ensure_installed },
   },
 
   {
