@@ -24,7 +24,7 @@ map('n', '<leader>W', '<Cmd>wa<CR>')
 map({ 'n', 'x' }, 'ss', 's', { noremap = true })
 
 -- exit terminal mode
-map('t', '<C-\\><C-\\>', '<C-\\><C-n>')
+map('t', '<C-\\>', '<C-\\><C-n>', { noremap = true })
 
 -- focus neotree file explorer
 map(
