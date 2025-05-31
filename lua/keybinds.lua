@@ -15,6 +15,12 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
+-- moving windows
+map('n', '<C-S-h>', '<C-w>H')
+map('n', '<C-S-j>', '<C-w>J')
+map('n', '<C-S-k>', '<C-w>K')
+map('n', '<C-S-l>', '<C-w>L')
+
 -- write buffer
 map('n', '<leader>w', '<Cmd>w<CR>')
 map('n', '<leader>W', '<Cmd>wa<CR>')

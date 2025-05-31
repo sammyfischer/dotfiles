@@ -21,6 +21,10 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>')
 
+-- split direction
+vim.o.splitbelow = true
+vim.o.splitright = true
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -36,9 +40,3 @@ else
   -- bash elsewhere
   vim.o.shell = '/bin/bash'
 end
-
--- open help windows to the right by default
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "help",
-  command = "wincmd L"
-})
