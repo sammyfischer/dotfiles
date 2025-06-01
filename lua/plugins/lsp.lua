@@ -7,17 +7,17 @@ local ensure_installed = {
 }
 
 local on_attach = function(_, buf)
-  -- for vscode, <leader>f calls the vscode format action
+  -- if vscode-neovim is active then vscode's editor actions will be used instead
   if not vscode then
-    vim.keymap.set(
-      'n',
-      '<leader>f',
-      function()
-        vim.lsp.buf.format()
-      end,
-      {
+    vim.keymap.set( 'n', '<leader>f', vim.lsp.buf.format, {
         buffer = buf,
-        desc = 'LSP format code',
+        desc = 'Format document',
+      }
+    )
+
+    vim.keymap.set( 'n', '<leader>r', vim.lsp.buf.rename, {
+        buffer = buf,
+        desc = 'Rename symbol',
       }
     )
   end
