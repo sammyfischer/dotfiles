@@ -23,23 +23,26 @@ noremap({ 'n', 'x' }, 'c', '"_c')
 noremap({ 'n', 'x' }, 'C', '"_C')
 
 -- make pasting in visual mode not copy selection
-noremap('x', 'p', '"_dp"')
-noremap('x', 'P', '"_dP"')
+noremap('x', 'p', '"_dP')
 
 -- make Y yank and keep visual mode selection
 noremap('x', 'Y', 'ygv')
 
 -- window navigation
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
+noremap('n', '<C-h>', '<C-w>h')
+noremap('n', '<C-j>', '<C-w>j')
+noremap('n', '<C-k>', '<C-w>k')
+noremap('n', '<C-l>', '<C-w>l')
 
 -- moving windows
-map('n', '<C-S-h>', '<C-w>H')
-map('n', '<C-S-j>', '<C-w>J')
-map('n', '<C-S-k>', '<C-w>K')
-map('n', '<C-S-l>', '<C-w>L')
+noremap('n', '<C-S-h>', '<C-w>H')
+noremap('n', '<C-S-j>', '<C-w>J')
+noremap('n', '<C-S-k>', '<C-w>K')
+noremap('n', '<C-S-l>', '<C-w>L')
+
+-- tab navigation
+map('n', '<Tab>', '<Cmd>tabnext<CR>')
+map('n', '<S-Tab>', '<Cmd>tabprev<CR>')
 
 -- write buffer
 map('n', '<leader>w', '<Cmd>w<CR>')

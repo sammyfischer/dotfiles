@@ -21,3 +21,6 @@ if vim.env.TERM_MODE then
   vim.cmd('terminal')
   vim.cmd('Neotree action=show source=buffers position=left')
 end
+
+-- useful symbols
+-- loading: ⠋, ⠙, ⠹, ⠸, ⠼, ⠴, ⠦, ⠧, ⠇, ⠏, ✓
