@@ -1,13 +1,33 @@
 local map = vim.keymap.set
 
-map({ 'n', 'x' }, 'H', '^')  -- home
-map({ 'n', 'x' }, 'L', 'g_') -- end
+local function noremap(modes, lhs, rhs, opts)
+  opts = opts or {}
+  opts.noremap = true
+  vim.keymap.set(modes, lhs, rhs, opts)
+end
 
--- better copy/paste
-map({ 'n', 'x' }, 'X', 'x', { noremap = true })   -- change x to X
-map({ 'n', 'x' }, 'd', '"_d', { noremap = true }) -- d deletes w/o copying
-map({ 'n', 'x' }, 'x', '"*d', { noremap = true }) -- x to cut
-map('n', 'xx', '"*dd', { noremap = true })        -- xx to cut line
+noremap({ 'n', 'x', 'o' }, 'H', 'g^') -- home
+noremap({ 'n', 'x', 'o' }, 'L', 'g$') -- end
+
+-- use x to cut
+noremap({ 'n', 'x' }, 'X', 'x') -- X to delete char
+noremap({ 'n', 'x' }, 'x', 'd') -- x does what d used to do
+noremap('n', 'xx', 'dd')        -- cut entire line
+
+-- make d not copy
+noremap({ 'n', 'x' }, 'd', '"_d')
+noremap({ 'n', 'x' }, 'D', '"_D')
+
+-- make c not copy
+noremap({ 'n', 'x' }, 'c', '"_c')
+noremap({ 'n', 'x' }, 'C', '"_C')
+
+-- make pasting in visual mode not copy selection
+noremap('x', 'p', '"_dp"')
+noremap('x', 'P', '"_dP"')
+
+-- make Y yank and keep visual mode selection
+noremap('x', 'Y', 'ygv')
 
 -- window navigation
 map('n', '<C-h>', '<C-w>h')
@@ -27,10 +47,10 @@ map('n', '<leader>W', '<Cmd>wa<CR>')
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
-map({ 'n', 'x' }, 'ss', 's', { noremap = true })
+noremap({ 'n', 'x' }, 'ss', 's')
 
 -- exit terminal mode
-map('t', '<C-\\>', '<C-\\><C-n>', { noremap = true })
+noremap('t', '<C-\\>', '<C-\\><C-n>')
 
 -- focus neotree file explorer
 map(
