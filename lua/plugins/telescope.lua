@@ -12,13 +12,12 @@ return {
       local builtin = require('telescope.builtin')
 
       -- general
-      map('n', '<leader>tt', '<Cmd>Telescope<CR>', { desc = 'Open Telescope window' })
-      map('n', '<leader>tf', builtin.find_files, { desc = 'Telescope find files' })
-      map('n', '<leader>tg', builtin.live_grep, { desc = 'Telescope live grep' })
-      map('n', '<leader>tb', builtin.buffers, { desc = 'Telescope buffers' })
-      map('n', '<leader>th', builtin.command_history, { desc = 'Telescope command history' })
-      map('n', '<leader>tq', builtin.quickfix, { desc = 'Telescope quick fix' })
-      map('n', '<leader>tj', builtin.jumplist, { desc = 'Telescope jump list' })
+      map('n', '<leader>gt', '<Cmd>Telescope<CR>', { desc = 'Open Telescope window' })
+      map('n', '<leader>gf', builtin.find_files, { desc = 'Telescope find files' })
+      map('n', '<leader>gb', builtin.buffers, { desc = 'Telescope buffers' })
+      map('n', '<leader>gh', builtin.command_history, { desc = 'Telescope command history' })
+      map('n', '<leader>gq', builtin.quickfix, { desc = 'Telescope quick fix' })
+      map('n', '<leader>gj', builtin.jumplist, { desc = 'Telescope jump list' })
 
       -- lsp
       map('n', '<leader>gr', builtin.lsp_references, { desc = 'Telescope lsp references' })
