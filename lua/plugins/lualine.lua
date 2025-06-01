@@ -1,3 +1,9 @@
+local filetype_names = {
+  ['neo-tree'] = 'NeoTree',
+  TelescopePrompt = 'Telescope',
+  help = 'Help',
+}
+
 local filename = {
   'filename',
   newfile_status = true,
@@ -9,6 +15,8 @@ local filename = {
 
 local buffers = {
   'buffers',
+  mode = 4, -- name and number
+  filetype_names = filetype_names,
   symbols = {
     modified = ' []',
   },
@@ -16,7 +24,9 @@ local buffers = {
 
 local tabs = {
   'tabs',
-  mode = 1,
+  mode = 2, -- name and number
+  max_length = vim.o.columns, -- take the entire tabline
+  filetype_names = filetype_names,
   symbols = {
     modified = '[]',
   },
@@ -29,6 +39,11 @@ return {
 
     opts = {
       theme = selected_theme,
+      always_divide_middle = false,
+
+      disabled_filetypes = {
+        'neo-tree',
+      },
 
       sections = {
         lualine_a = { 'mode' },
@@ -55,8 +70,8 @@ return {
       },
 
       tabline = {
-        lualine_a = {},
-        lualine_b = { tabs },
+        lualine_a = { tabs },
+        lualine_b = {},
         lualine_c = {},
 
         lualine_x = {},
@@ -66,8 +81,8 @@ return {
 
       winbar = {
         lualine_a = {},
-        lualine_b = {},
-        lualine_c = { buffers },
+        lualine_b = { buffers },
+        lualine_c = {},
 
         lualine_x = {},
         lualine_y = {},
