@@ -6,13 +6,29 @@ local function noremap(modes, lhs, rhs, opts)
   vim.keymap.set(modes, lhs, rhs, opts)
 end
 
-noremap({ 'n', 'x', 'o' }, 'H', 'g^') -- home
-noremap({ 'n', 'x', 'o' }, 'L', 'g$') -- end
+local function cmd(command)
+  return '<Cmd>' .. command .. '<CR>'
+end
+
+local function wincmd(command)
+  return '<Cmd>wincmd ' .. command .. '<CR>'
+end
+
+local function countcmd(command)
+  if vim.v.count == 0 then
+    return cmd(command)
+  else
+    return cmd(command .. ' ' .. vim.v.count)
+  end
+end
+
+noremap({ 'n', 'x', 'o' }, 'H', '^') -- home
+noremap({ 'n', 'x', 'o' }, 'L', '$') -- end
 
 -- use x to cut
-noremap({ 'n', 'x' }, 'X', 'x') -- X to delete char
-noremap({ 'n', 'x' }, 'x', 'd') -- x does what d used to do
-noremap('n', 'xx', 'dd')        -- cut entire line
+noremap({ 'n', 'x' }, 'X', 'x', { desc = 'Delete character' }) -- X to delete char
+noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' })              -- x does what d used to do
+noremap('n', 'xx', 'dd', { desc = 'Cut line' })                -- cut entire line
 
 -- make d not copy
 noremap({ 'n', 'x' }, 'd', '"_d')
@@ -25,28 +41,49 @@ noremap({ 'n', 'x' }, 'C', '"_C')
 -- make pasting in visual mode not copy selection
 noremap('x', 'p', '"_dP')
 
--- make Y yank and keep visual mode selection
-noremap('x', 'Y', 'ygv')
+-- yank without losing visual mode selection
+noremap('x', 'Y', 'ygv', { desc = 'Yank (keep selection)' })
+
+-- window commands
+map('n', '<leader>q', cmd 'q', { desc = 'Window: quit' })
+map('n', '<leader>Q', cmd 'qa', { desc = 'Window: quit all' })
+map('n', '<leader>ws', cmd 'split', { desc = 'Window: split' })
+map('n', '<leader>wv', cmd 'vsplit', { desc = 'Window: vsplit' })
+map('n', '<leader>wt', cmd 'wincmd T', { desc = 'Window: open in new tab' })
 
 -- window navigation
-noremap('n', '<C-h>', '<C-w>h')
-noremap('n', '<C-j>', '<C-w>j')
-noremap('n', '<C-k>', '<C-w>k')
-noremap('n', '<C-l>', '<C-w>l')
+noremap('n', '<C-h>', wincmd 'h', { desc = 'Window: navigate left' })
+noremap('n', '<C-j>', wincmd 'j', { desc = 'Window: navigate down' })
+noremap('n', '<C-k>', wincmd 'k', { desc = 'Window: navigate up' })
+noremap('n', '<C-l>', wincmd 'l', { desc = 'Window: navigate right' })
 
--- moving windows
-noremap('n', '<C-S-h>', '<C-w>H')
-noremap('n', '<C-S-j>', '<C-w>J')
-noremap('n', '<C-S-k>', '<C-w>K')
-noremap('n', '<C-S-l>', '<C-w>L')
+-- window arrangement
+noremap('n', '<leader>wh', wincmd 'H', { desc = 'Window: move left' })
+noremap('n', '<leader>wj', wincmd 'J', { desc = 'Window: move down' })
+noremap('n', '<leader>wl', wincmd 'K', { desc = 'Window: move up' })
+noremap('n', '<leader>wl', wincmd 'L', { desc = 'Window: move right' })
+
+-- tab commands
+map('n', '<leader>tq', countcmd 'tabclose', { desc = 'Tab: close (accepts count)' })
+map('n', '<leader>tn', cmd 'tabnew', { desc = 'Tab: new' })
 
 -- tab navigation
-map('n', '<Tab>', '<Cmd>tabnext<CR>')
-map('n', '<S-Tab>', '<Cmd>tabprev<CR>')
+map('n', '<Tab>', cmd 'tabnext', { desc = 'Tab: next' })
+map('n', '<S-Tab>', cmd 'tabprev', { desc = 'Tab: prev' })
+map('n', '<leader>tt', countcmd('tabnext'), { desc = 'Tab: next (accepts count)' })
 
--- write buffer
-map('n', '<leader>w', '<Cmd>w<CR>')
-map('n', '<leader>W', '<Cmd>wa<CR>')
+-- tab arrangement
+map('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
+map('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
+
+-- buffer commands
+map('n', '<leader>s', cmd 'w', { desc = 'Buffer: write' })
+map('n', '<leader>S', cmd 'wa', { desc = 'Buffer: write all' })
+map('n', '<leader>bd', countcmd 'bd', { desc = 'Buffer: delete (accepts count)' })
+
+-- buffer navigation
+map('n', '<M-Tab>', cmd 'bnext', { desc = 'Buffer: next' })
+map('n', '<M-S-Tab>', cmd 'bprev', { desc = 'Buffer: prev' })
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
@@ -59,16 +96,21 @@ noremap('t', '<C-\\>', '<C-\\><C-n>')
 map(
   'n',
   '<leader>e',
-  '<Cmd>Neotree action=focus source=filesystem position=left<CR>',
-  { desc = 'Open and focus Neotree filesystem' }
+  cmd 'Neotree action=focus source=filesystem position=left',
+  { desc = 'Focus file explorer' }
 )
 
 -- vscode specific keybinds
 if vscode then
   -- format code
-  map('n', '<leader>f', function()
-    vscode.action('editor.action.formatDocument', { desc = 'VS Code format code' })
-  end)
+  map(
+    'n',
+    '<leader>f',
+    function()
+      vscode.action('editor.action.formatDocument', { desc = 'VS Code format code' })
+    end,
+    { desc = 'Format document' }
+  )
 
   -- rename symbol
   map(
@@ -77,7 +119,7 @@ if vscode then
     function()
       vscode.action('editor.action.rename')
     end,
-    { desc = 'VS Code rename symbol' }
+    { desc = 'Rename symbol' }
   )
 
   -- focus vscode file explorer instead of neotree
@@ -88,6 +130,8 @@ if vscode then
       vscode.call('workbench.view.explorer')
       vscode.call('workbench.files.action.focusFilesExplorer')
     end,
-    { desc = 'VS Code open and focus file explorer' }
+    { desc = 'Focus file explorer' }
   )
+else
+
 end
