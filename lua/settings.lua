@@ -25,6 +25,16 @@ vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>')
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- open help in new tab
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'help',
+  command = 'wincmd T',
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  command = 'wincmd T',
+})
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
