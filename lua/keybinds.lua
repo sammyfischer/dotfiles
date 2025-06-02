@@ -132,6 +132,22 @@ if vscode then
     end,
     { desc = 'Focus file explorer' }
   )
-else
 
+  map(
+    'n',
+    '<Tab>',
+    function()
+      vscode.action('workbench.action.nextEditor')
+    end,
+    { desc = 'Next tab' }
+  )
+
+  map(
+    'n',
+    '<S-Tab>',
+    function()
+      vscode.action('workbench.action.previousEditor')
+    end,
+    { desc = 'Prev tab' }
+  )
 end
