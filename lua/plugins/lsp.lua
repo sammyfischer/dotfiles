@@ -6,25 +6,37 @@ local ensure_installed = {
   'vue_ls',
 }
 
-local on_attach = function(_, buf)
+local on_attach = function(args)
   -- if vscode-neovim is active then vscode's editor actions will be used instead
   if not vscode then
-    vim.keymap.set( 'n', '<leader>f', vim.lsp.buf.format, {
-        buffer = buf,
+    vim.keymap.set(
+      'n',
+      '<leader>f',
+      function()
+        vim.lsp.buf.format({ bufnr = args.buf })
+      end,
+      {
+        buffer = args.buf,
         desc = 'Format document',
       }
     )
 
-    vim.keymap.set( 'n', '<leader>r', vim.lsp.buf.rename, {
-        buffer = buf,
-        desc = 'Rename symbol',
-      }
-    )
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {
+      buffer = args.buf,
+      desc = 'Rename symbol',
+    })
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format({ bufnr = args.buf })
+      end,
+    })
   end
 end
 
 vim.diagnostic.config({
-  virtual_text = true
+  virtual_text = true,
 })
 
 return {
@@ -48,7 +60,7 @@ return {
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
-          on_attach(_, args.buf)
+          on_attach(args)
         end,
       })
 
