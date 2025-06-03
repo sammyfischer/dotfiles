@@ -17,6 +17,7 @@ local buffers = {
   'buffers',
   mode = 4, -- name and number
   filetype_names = filetype_names,
+  use_mode_colors = true,
   symbols = {
     modified = ' []',
   },
@@ -24,9 +25,10 @@ local buffers = {
 
 local tabs = {
   'tabs',
-  mode = 2, -- name and number
+  mode = 2,                   -- name and number
   max_length = vim.o.columns, -- take the entire tabline
   filetype_names = filetype_names,
+  use_mode_colors = true,
   symbols = {
     modified = '[]',
   },
@@ -39,11 +41,6 @@ return {
 
     opts = {
       theme = selected_theme,
-      always_divide_middle = false,
-
-      disabled_filetypes = {
-        'neo-tree',
-      },
 
       sections = {
         lualine_a = { 'mode' },
