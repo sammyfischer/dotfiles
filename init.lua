@@ -2,7 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-selected_theme = 'carbonfox' -- choose theme
+selected_theme = 'tokyonight-night' -- choose theme
 
 -- setup vscode support if it's active
 vscode = nil
