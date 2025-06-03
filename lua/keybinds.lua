@@ -14,11 +14,14 @@ local function wincmd(command)
   return '<Cmd>wincmd ' .. command .. '<CR>'
 end
 
+-- for commands that take a count, but use that count as the first arg passed
 local function countcmd(command)
-  if vim.v.count == 0 then
-    return cmd(command)
-  else
-    return cmd(command .. ' ' .. vim.v.count)
+  return function()
+    if vim.v.count == 0 then
+      vim.cmd(command)
+    else
+      vim.cmd(command .. ' ' .. vim.v.count)
+    end
   end
 end
 
@@ -82,8 +85,12 @@ map('n', '<leader>S', cmd 'wa', { desc = 'Buffer: write all' })
 map('n', '<leader>bd', countcmd 'bd', { desc = 'Buffer: delete (accepts count)' })
 
 -- buffer navigation
-map('n', '<M-Tab>', cmd 'bnext', { desc = 'Buffer: next' })
-map('n', '<M-S-Tab>', cmd 'bprev', { desc = 'Buffer: prev' })
+map('n', '[<Tab>', cmd 'bprev', { desc = 'Buffer: prev' })
+map('n', ']<Tab>', cmd 'bnext', { desc = 'Buffer: next' })
+
+-- scroll keybinds
+noremap('n', 'zj', '<C-d>', { desc = 'Move down half page' })
+noremap('n', 'zk', '<C-u>', { desc = 'Move up half page' })
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
