@@ -43,6 +43,7 @@ noremap({ 'n', 'x' }, 'C', '"_C')
 
 -- make pasting in visual mode not copy selection
 noremap('x', 'p', '"_dP')
+noremap('x', 'P', '"_dP')
 
 -- yank without losing visual mode selection
 noremap('x', 'Y', 'ygv', { desc = 'Yank (keep selection)' })
@@ -134,6 +135,7 @@ if vscode then
     'n',
     '<leader>e',
     function()
+      -- call is synchronous
       vscode.call('workbench.view.explorer')
       vscode.call('workbench.files.action.focusFilesExplorer')
     end,
@@ -156,5 +158,14 @@ if vscode then
       vscode.action('workbench.action.previousEditor')
     end,
     { desc = 'Prev tab' }
+  )
+
+  map(
+    'n',
+    '<leader>q',
+    function()
+      vscode.action('workbench.action.closeActiveEditor')
+    end,
+    { desc = 'Close tab' }
   )
 end
