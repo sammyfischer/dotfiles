@@ -24,6 +24,7 @@ return {
           split = 'gS',
         },
       }
+
       require('mini.surround').setup()
     end,
   },

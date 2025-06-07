@@ -40,7 +40,13 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 
     opts = {
-      theme = selected_theme,
+      options = {
+        theme = selected_theme,
+        disabled_filetypes = { winbar = { 'neo-tree' } },
+        globalstatus = true,
+      },
+
+      extensions = { 'neo-tree', 'lazy', 'mason' },
 
       sections = {
         lualine_a = { 'mode' },
@@ -85,8 +91,6 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-
-      extensions = { 'neo-tree', 'lazy', 'mason' },
     },
   },
 }

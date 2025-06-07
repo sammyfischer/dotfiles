@@ -38,8 +38,7 @@ vim.api.nvim_create_autocmd('FileType', {
 --   function(ctx)
 --     -- forward args (if nil, set to 0)
 --     if (ctx.nargs or 0) > 0 then
---       local command = 'tab help ' .. ctx.args
---       vim.cmd(command)
+--       vim.cmd('tab help ' .. ctx.args)
 --     else
 --       vim.cmd('tab help')
 --     end

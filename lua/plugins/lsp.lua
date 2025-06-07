@@ -65,7 +65,16 @@ return {
       })
 
       vim.lsp.config('lua_ls', {
-        settings = { Lua = { workspace = { library = { vim.fn.expand('$VIMRUNTIME/lua') } } } },
+        settings = {
+          Lua = {
+            workspace = {
+              library = {
+                vim.fn.expand('$VIMRUNTIME/lua'),
+                vim.fn.expand('~/.local/share/nvim/lazy'),
+              },
+            },
+          },
+        },
       })
     end,
   },
