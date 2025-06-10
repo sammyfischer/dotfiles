@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- set default shell
-if vim.loop.os_uname().sysname == 'Windows_NT' then
+if jit.os:find('Windows') then
   -- powershell on windows
   vim.o.shell = 'powershell.exe'
 else
