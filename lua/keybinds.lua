@@ -168,4 +168,13 @@ if vscode then
     end,
     { desc = 'Close tab' }
   )
+
+  map(
+    'n',
+    '<leader>o',
+    function()
+      vscode.action('editor.action.organizeImports')
+    end,
+    { desc = 'Organize imports' }
+  )
 end
