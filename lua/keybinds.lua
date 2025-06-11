@@ -29,9 +29,9 @@ noremap({ 'n', 'x', 'o' }, 'H', '^') -- home
 noremap({ 'n', 'x', 'o' }, 'L', '$') -- end
 
 -- use x to cut
-noremap({ 'n', 'x' }, 'X', 'x', { desc = 'Delete character' }) -- X to delete char
-noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' })              -- x does what d used to do
-noremap('n', 'xx', 'dd', { desc = 'Cut line' })                -- cut entire line
+noremap({ 'n', 'x' }, 'X', '"_x', { desc = 'Delete character' }) -- X to delete char
+noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' })                -- x does what d used to do
+noremap('n', 'xx', 'dd', { desc = 'Cut line' })                  -- cut entire line
 
 -- make d not copy
 noremap({ 'n', 'x' }, 'd', '"_d')
