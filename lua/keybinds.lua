@@ -29,9 +29,9 @@ noremap({ 'n', 'x', 'o' }, 'H', '^') -- home
 noremap({ 'n', 'x', 'o' }, 'L', '$') -- end
 
 -- use x to cut
-noremap({ 'n', 'x' }, 'X', '"_x', { desc = 'Delete character' }) -- X to delete char
-noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' })                -- x does what d used to do
-noremap('n', 'xx', 'dd', { desc = 'Cut line' })                  -- cut entire line
+noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' }) -- x does what d used to do
+noremap('n', 'xx', 'dd', { desc = 'Cut line' })
+noremap('n', 'X', 'D', { desc = 'Cut rest of line' })
 
 -- make d not copy
 noremap({ 'n', 'x' }, 'd', '"_d')
@@ -74,7 +74,7 @@ map('n', '<leader>tn', cmd 'tabnew', { desc = 'Tab: new' })
 -- tab navigation
 map('n', '<Tab>', cmd 'tabnext', { desc = 'Tab: next' })
 map('n', '<S-Tab>', cmd 'tabprev', { desc = 'Tab: prev' })
-map('n', '<leader>tt', countcmd('tabnext'), { desc = 'Tab: next (accepts count)' })
+map('n', '<leader>tt', countcmd 'tabnext', { desc = 'Tab: next (accepts count)' })
 
 -- tab arrangement
 map('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
