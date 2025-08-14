@@ -89,10 +89,6 @@ map('n', '<leader>bd', countcmd 'bd', { desc = 'Buffer: delete (accepts count)' 
 map('n', '[<Tab>', cmd 'bprev', { desc = 'Buffer: prev' })
 map('n', ']<Tab>', cmd 'bnext', { desc = 'Buffer: next' })
 
--- scroll keybinds
-noremap('n', 'zj', '<C-d>', { desc = 'Move down half page' })
-noremap('n', 'zk', '<C-u>', { desc = 'Move up half page' })
-
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 noremap({ 'n', 'x' }, 'ss', 's')
