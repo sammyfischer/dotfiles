@@ -34,7 +34,6 @@ alias dots='dot status'
 alias dota='dot add -u ; dots'
 alias dotc='dot commit -m'
 alias dotf='dot fetch origin -p --all'
-alias dotp='dot push'
 
 # git aliases
 alias st='git status'
