@@ -2,23 +2,8 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-GIT_UTILITIES=~/GitHub/rkiel/git-utilities
-source ${GIT_UTILITIES}/dotfiles/bashrc
-
-NODE_UTILITIES=~/GitHub/rkiel/node-utilities
-source ${NODE_UTILITIES}/dotfiles/bashrc
-
-PATH="$HOME/scripts:$PATH"
-PATH="$PATH:/opt/homebrew/bin"
-PATH="$PATH:/opt/homebrew/Cellar/neovim/0.11.1/bin/nvim"
-export PATH
-
 # custom prompt
-source ~/.git-prompt.sh
+source ~/scripts/git-prompt.sh
 
 color_pink="\e[35m"
 color_blue="\e[34m"
@@ -39,23 +24,23 @@ update_prompt() {
 }
 PROMPT_COMMAND=update_prompt
 
-
-
 # aliases
-alias c="clear"
-alias ls="ls --color=auto"
-alias grep="grep --color"
+alias c='clear'
+alias ls='ls --color=auto'
+alias grep='grep --color'
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias dots='dot status'
+alias dota='dot add -u ; dots'
+alias dotc='dot commit -m'
+alias dotf='dot fetch origin -p --all'
+alias dotp='dot push'
 
 # git aliases
-alias st="git status"
-alias patch="git add -p && git status"
-alias unstage="git restore --staged && git status"
-alias commit="git commit -m"
-alias fetch="git fetch -tpP --all"
-alias branch="git branch -vv"
-alias clean="fetch && git-branch-clean.py"
+alias st='git status'
+alias patch='git add -p && git status'
+alias commit='git commit -m'
+alias branch='git branch -vv'
+alias fetch='git fetch -tpP --all'
+alias clean='fetch ; ~/scripts/git-branch-clean.py'
 
-# disable telemetry for aws sam
-export SAM_CLI_TELEMETRY=0
