@@ -2,7 +2,7 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-# custom prompt
+source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
 
 color_pink="\e[35m"
@@ -42,4 +42,3 @@ alias commit='git commit -m'
 alias branch='git branch -vv'
 alias fetch='git fetch -tpP --all'
 alias clean='fetch ; ~/scripts/git-branch-clean.py'
-
