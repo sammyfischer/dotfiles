@@ -29,7 +29,7 @@ alias c='clear'
 alias ls='ls --color=auto'
 alias grep='grep --color'
 
-alias dot='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dots='dot status'
 alias dota='dot add -u ; dots'
 alias dotc='dot commit -m'
