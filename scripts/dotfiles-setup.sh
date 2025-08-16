@@ -6,8 +6,9 @@
 # 4. Place this script whever you want and run it
 
 git clone --bare git@github.com:sammyfischer/dotfiles.git $HOME/.dotfiles
-source ~/.bashrc # defines the dotfiles alias
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 dot checkout
 dot config status.showUntrackedFiles no
+source ~/.bashrc
 
