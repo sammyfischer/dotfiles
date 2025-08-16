@@ -10,5 +10,6 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 dot checkout
 dot config status.showUntrackedFiles no
+dot branch -u origin/main main
 source ~/.bashrc
 
