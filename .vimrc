@@ -17,13 +17,14 @@ set scrolloff=5
 set sidescrolloff=5
 
 " cosmetic
+set guifont=CaskaydiaCove\ NF
 set termguicolors
 set background=dark " used by some themes to set dark/light mode
 
 " search settings
 set ignorecase
 set smartcase
-nnoremap <esc> :nohlsearch<cr>
+nnoremap <esc> <cmd>nohlsearch<cr>
 
 " split direction
 set splitbelow

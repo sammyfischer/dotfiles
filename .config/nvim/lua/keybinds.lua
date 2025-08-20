@@ -25,42 +25,6 @@ local function countcmd(command)
   end
 end
 
-noremap({ 'n', 'x', 'o' }, 'H', '^') -- home
-noremap({ 'n', 'x', 'o' }, 'L', '$') -- end
-
--- use x to cut
-noremap({ 'n', 'x' }, 'x', 'd', { desc = 'Cut' }) -- x does what d used to do
-noremap('n', 'xx', 'dd', { desc = 'Cut line' })
-noremap('n', 'X', 'D', { desc = 'Cut rest of line' })
-
--- make d not copy
-noremap({ 'n', 'x' }, 'd', '"_d')
-noremap({ 'n', 'x' }, 'D', '"_D')
-
--- make c not copy
-noremap({ 'n', 'x' }, 'c', '"_c')
-noremap({ 'n', 'x' }, 'C', '"_C')
-
--- make pasting in visual mode not copy selection
-noremap('x', 'p', '"_dP')
-noremap('x', 'P', '"_dP')
-
--- yank without losing visual mode selection
-noremap('x', 'Y', 'ygv', { desc = 'Yank (keep selection)' })
-
--- window commands
-map('n', '<leader>q', cmd 'q', { desc = 'Window: quit' })
-map('n', '<leader>Q', cmd 'qa', { desc = 'Window: quit all' })
-map('n', '<leader>ws', cmd 'split', { desc = 'Window: split' })
-map('n', '<leader>wv', cmd 'vsplit', { desc = 'Window: vsplit' })
-map('n', '<leader>wt', cmd 'wincmd T', { desc = 'Window: open in new tab' })
-
--- window navigation
-noremap('n', '<C-h>', wincmd 'h', { desc = 'Window: navigate left' })
-noremap('n', '<C-j>', wincmd 'j', { desc = 'Window: navigate down' })
-noremap('n', '<C-k>', wincmd 'k', { desc = 'Window: navigate up' })
-noremap('n', '<C-l>', wincmd 'l', { desc = 'Window: navigate right' })
-
 -- window arrangement
 noremap('n', '<leader>wh', wincmd 'H', { desc = 'Window: move left' })
 noremap('n', '<leader>wj', wincmd 'J', { desc = 'Window: move down' })
@@ -81,20 +45,11 @@ map('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
 map('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
 
 -- buffer commands
-map('n', '<leader>s', cmd 'w', { desc = 'Buffer: write' })
-map('n', '<leader>S', cmd 'wa', { desc = 'Buffer: write all' })
 map('n', '<leader>bd', countcmd 'bd', { desc = 'Buffer: delete (accepts count)' })
-
--- buffer navigation
-map('n', '[<Tab>', cmd 'bprev', { desc = 'Buffer: prev' })
-map('n', ']<Tab>', cmd 'bnext', { desc = 'Buffer: next' })
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 noremap({ 'n', 'x' }, 'ss', 's')
-
--- exit terminal mode
-noremap('t', '<C-\\>', '<C-\\><C-n>')
 
 -- focus neotree file explorer
 map(
