@@ -1,8 +1,6 @@
 " SETTINGS
 
 let mapleader = " "
-
-set number
 set clipboard=unnamedplus
 
 " tabbing
@@ -12,9 +10,9 @@ set expandtab
 set smartindent
 
 " line visibility
+set number
 set nowrap
 set scrolloff=5
-set sidescrolloff=5
 
 " cosmetic
 set guifont=CaskaydiaCove\ NF
@@ -69,7 +67,6 @@ xnoremap Y ygv
 
 " window commands
 nmap <leader>q <cmd>q<cr>
-nmap <leader>Q <cmd>qa<cr>
 nmap <leader>ws <cmd>split<cr>
 nmap <leader>wv <cmd>vsplit<cr>
 nmap <leader>wt <cmd>wincmd T<cr>
@@ -82,12 +79,11 @@ nnoremap <c-l> <cmd>wincmd l<cr>
 
 " buffer commands
 nmap <leader>s <cmd>w<cr>
-nmap <leader>S <cmd>wa<cr>
 
 " buffer navigation
 nmap [<tab> <cmd>bprev<cr>
 nmap ]<tab> <cmd>bnext<cr>
 
 " exit term mode
-tnoremap <c-\> <c-\><c-n>
+tnoremap <c-\><c-\> <c-\><c-n>
 

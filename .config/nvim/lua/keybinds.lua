@@ -44,9 +44,6 @@ map('n', '<leader>tt', countcmd 'tabnext', { desc = 'Tab: next (accepts count)' 
 map('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
 map('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
 
--- buffer commands
-map('n', '<leader>bd', countcmd 'bd', { desc = 'Buffer: delete (accepts count)' })
-
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 noremap({ 'n', 'x' }, 'ss', 's')
@@ -55,7 +52,7 @@ noremap({ 'n', 'x' }, 'ss', 's')
 map(
   'n',
   '<leader>e',
-  cmd 'Neotree action=focus source=filesystem position=left',
+  cmd 'Neotree action=focus source=filesystem',
   { desc = 'Focus file explorer' }
 )
 
