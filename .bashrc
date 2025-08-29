@@ -2,6 +2,8 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
+export PATH=$PATH:/usr/lib/jvm/jdk-21.0.8+9/bin:/opt/kotlinc/bin:/opt/gradle/gradle-9.0.0/bin
+
 source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
 
