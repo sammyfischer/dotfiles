@@ -2,8 +2,9 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-export PATH=$PATH:/usr/lib/jvm/jdk-21.0.8+9/bin:/opt/kotlinc/bin:/opt/gradle/gradle-9.0.0/bin
+export PATH="$PATH:$HOME/bin:/usr/lib/jvm/jdk-25+36/bin:/opt/kotlinc/bin:/opt/gradle/gradle-9.0.0/bin"
 
+source ~/.cargo/env
 source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
 
@@ -31,6 +32,7 @@ alias c='clear'
 alias ls='ls --color=auto'
 alias grep='grep --color'
 
+# dotfiles aliases
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dots='dot status'
 alias dota='dot add -u ; dots'
@@ -48,3 +50,4 @@ alias clean='fetch ; ~/scripts/git-branch-clean.py'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"

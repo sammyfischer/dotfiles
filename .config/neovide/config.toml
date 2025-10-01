@@ -1,1 +1,7 @@
+fork = true # detach from terminal
 maximized = true
+
+[font]
+normal = ["CaskaydiaCove NF"]
+size = 12.0
+
