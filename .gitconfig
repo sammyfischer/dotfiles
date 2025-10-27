@@ -1,0 +1,4 @@
+[core]
+	editor = neovide --no-fork
+[init]
+	defaultBranch = main
