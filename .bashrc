@@ -28,24 +28,24 @@ update_prompt() {
 PROMPT_COMMAND=update_prompt
 
 # aliases
-alias c='clear'
-alias ls='ls --color=auto'
-alias grep='grep --color'
+alias c="clear"
+alias ls="ls --color=auto"
+alias grep="grep --color"
 
 # dotfiles aliases
-alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias dots='dot status'
-alias dota='dot add -u ; dots'
-alias dotc='dot commit -m'
-alias dotf='dot fetch origin -p --all'
+alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dots="dot status"
+alias dotadd="dot add -u ; dots"
+alias dotpatch="dot add -p ; dots"
+alias dotfetch="dot fetch -tpP --all"
 
 # git aliases
-alias st='git status'
-alias patch='git add -p && git status'
-alias commit='git commit -m'
-alias branch='git branch -vv'
-alias fetch='git fetch -tpP --all'
-alias clean='fetch ; ~/scripts/git-branch-clean.py'
+alias st="git status"
+alias patch="git add -p && git status"
+alias commit="git commit -m"
+alias branch="git branch -vv"
+alias fetch="git fetch -tpP --all"
+alias clean="fetch ; ~/scripts/git-branch-clean.py"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
