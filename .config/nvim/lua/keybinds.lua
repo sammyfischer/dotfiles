@@ -31,6 +31,12 @@ noremap('n', '<leader>wj', wincmd 'J', { desc = 'Window: move down' })
 noremap('n', '<leader>wl', wincmd 'K', { desc = 'Window: move up' })
 noremap('n', '<leader>wl', wincmd 'L', { desc = 'Window: move right' })
 
+-- window size
+noremap('n', '<C-S-h>', cmd 'vertical resize -3', { desc = 'Window: shrink horizontally' })
+noremap('n', '<C-S-l>', cmd 'vertical resize +3', { desc = 'Window: grow horizontally' })
+noremap('n', '<C-S-j>', cmd 'resize -1', { desc = 'Window: shrink vertically' })
+noremap('n', '<C-S-k>', cmd 'resize +1', { desc = 'Window: grow vertically' })
+
 -- tab commands
 map('n', '<leader>tq', countcmd 'tabclose', { desc = 'Tab: close (accepts count)' })
 map('n', '<leader>tn', cmd 'tabnew', { desc = 'Tab: new' })
