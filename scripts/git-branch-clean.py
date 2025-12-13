@@ -3,16 +3,6 @@ import subprocess
 import re
 import sys
 
-def setup():
-    try:
-        print("Fetching from remote")
-        subprocess.run(["git", "fetch", "origin", "-p", "--tags"])
-        print("Bringing changes into master")
-        subprocess.run(["git", "fetch", "origin", "master:master"])
-    except subprocess.CalledProcessError:
-        print("Failed to pull changes")
-        sys.exit(1)
-
 
 def get_branch_output():
     try:
@@ -29,19 +19,19 @@ def get_branch_output():
 
 def delete_branch(branch_name):
     try:
-        subprocess.run(["git", "branch", "-D", branch_name], check=True)
+        subprocess.run(["git", "branch", "-d", branch_name], check=True)
     except subprocess.CalledProcessError:
         print(f"Failed to delete branch: {branch_name}")
 
 
 def main():
     lines = get_branch_output()
-    gone_pattern = re.compile(r"^[  ]\s+(\S+)\s+[a-f0-9]{8}\s+\[origin/[^:]+: gone\]")
+    gone_pattern = re.compile(r"^\*?\s*(?P<branch>\S+)\s+[a-f0-9]{7} \[\S+: gone].+$")
 
     for line in lines:
         match = gone_pattern.match(line)
         if match:
-            branch = match.group(1)
+            branch = match.group("branch")
             delete_branch(branch)
 
 
