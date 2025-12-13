@@ -2,7 +2,7 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-export PATH="$PATH:$HOME/bin:/usr/lib/jvm/jdk-25+36/bin:/opt/kotlinc/bin:/opt/gradle/gradle-9.0.0/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/scripts"
 
 source ~/.cargo/env
 source ~/scripts/git-completion.bash

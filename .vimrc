@@ -87,3 +87,22 @@ nmap ]<tab> <cmd>bnext<cr>
 " exit term mode
 tnoremap <c-\><c-\> <c-\><c-n>
 
+" closes current quote, inserts comma, opens a new quote. helpful for writing
+" arrays of strings
+function! s:ArrayQuoteString() abort
+  let line = getline('.')
+  let col  = col('.') - 1
+  let before = strpart(line, 0, col)
+
+  " search backwards until there's a quote
+  let idx = match(before, "['\"`][^'\"`]*$")
+  if idx == -1
+    return ''
+  endif
+
+  let quote = before[idx]
+  return quote . ', ' . quote
+endfunction
+
+inoremap <expr> <C-'> <SID>ArrayQuoteString()
+

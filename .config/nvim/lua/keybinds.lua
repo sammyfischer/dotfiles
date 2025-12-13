@@ -62,6 +62,10 @@ map(
   { desc = 'Focus file explorer' }
 )
 
+noremap('n', 'gs', cmd 'TSJToggle', { desc = 'Splitjoin toggle' })
+noremap('n', 'gj', cmd 'TSJJoin', { desc = 'Splitjoin join' })
+noremap('n', 'gS', cmd 'TSJSplit', { desc = 'Splitjoin split' })
+
 -- vscode specific keybinds
 if vscode then
   -- format code

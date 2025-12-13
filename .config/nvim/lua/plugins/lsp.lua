@@ -1,9 +1,12 @@
 local ensure_installed = {
   'bashls',
+  'eslint',
+  'jsonls',
   'lua_ls',
   'pyright',
   'ts_ls',
   'vue_ls',
+  'yamlls',
 }
 
 local on_attach = function(args)
@@ -26,12 +29,14 @@ local on_attach = function(args)
       desc = 'Rename symbol',
     })
 
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = args.buf,
-      callback = function()
-        vim.lsp.buf.format({ bufnr = args.buf })
-      end,
-    })
+    if vim.lsp.client.supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf })
+        end,
+      })
+    end
   end
 end
 
