@@ -12,6 +12,6 @@ return {
   {
     'EdenEast/nightfox.nvim',
     lazy = false,
-    enable = themes[selected_theme] == true,
+    enable = themes[SelectedTheme] == true,
   },
 }

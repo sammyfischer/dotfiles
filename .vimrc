@@ -67,11 +67,6 @@ xnoremap Y ygv
 
 " window commands
 nmap <leader>q <cmd>q<cr>
-nmap <leader>ws <cmd>split<cr>
-nmap <leader>wv <cmd>vsplit<cr>
-nmap <leader>wt <cmd>wincmd T<cr>
-
-" window navigation
 nnoremap <c-h> <cmd>wincmd h<cr>
 nnoremap <c-j> <cmd>wincmd j<cr>
 nnoremap <c-k> <cmd>wincmd k<cr>
@@ -79,10 +74,8 @@ nnoremap <c-l> <cmd>wincmd l<cr>
 
 " buffer commands
 nmap <leader>s <cmd>w<cr>
-
-" buffer navigation
-nmap [<tab> <cmd>bprev<cr>
-nmap ]<tab> <cmd>bnext<cr>
+nmap <s-tab> <cmd>bprev<cr>
+nmap <tab> <cmd>bnext<cr>
 
 " exit term mode
 tnoremap <c-\><c-\> <c-\><c-n>

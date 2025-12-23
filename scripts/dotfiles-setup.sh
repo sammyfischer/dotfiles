@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# 1. View this file on github
-# 2. Click the "raw" button and copy the url
-# 3. curl -L <the url>
-# 4. Place this script whever you want and run it
+# 1. Run git clone --bare git@github.com:sammyfischer/dotfiles.git "$HOME/.dotfiles"
+# 2. Run "$HOME/scripts/dotfiles-setup.sh"
 
-git clone --bare git@github.com:sammyfischer/dotfiles.git "$HOME/.dotfiles"
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-dot checkout origin/main
+dot checkout main
 dot config status.showUntrackedFiles no
 dot branch -u origin/main main
 

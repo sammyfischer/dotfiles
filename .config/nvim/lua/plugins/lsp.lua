@@ -11,7 +11,7 @@ local ensure_installed = {
 
 local on_attach = function(args)
   -- if vscode-neovim is active then vscode's editor actions will be used instead
-  if not vscode then
+  if not Vscode then
     vim.keymap.set(
       'n',
       '<leader>f',

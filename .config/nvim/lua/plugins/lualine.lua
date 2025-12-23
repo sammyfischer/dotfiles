@@ -41,7 +41,7 @@ return {
 
     opts = {
       options = {
-        theme = selected_theme,
+        theme = SelectedTheme,
         disabled_filetypes = { winbar = { 'neo-tree' } },
         globalstatus = true,
       },

@@ -1,7 +1,7 @@
 return {
-    {
-        'nyoom-engineering/oxocarbon.nvim',
-        lazy = false,
-        enable = selected_theme == 'oxocarbon'
-    },
+  {
+    'nyoom-engineering/oxocarbon.nvim',
+    lazy = false,
+    enable = SelectedTheme == 'oxocarbon',
+  },
 }

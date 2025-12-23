@@ -7,7 +7,7 @@ return {
       require('mini.ai').setup()
       require('mini.icons').setup()
 
-      if not vscode then
+      if not Vscode then
         require('mini.indentscope').setup { symbol = '│' }
       end
 

@@ -4,7 +4,6 @@ fi
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/scripts"
 
-source ~/.cargo/env
 source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
 
@@ -31,6 +30,10 @@ PROMPT_COMMAND=update_prompt
 alias c="clear"
 alias ls="ls --color=auto"
 alias grep="grep --color"
+
+# xclip aliases
+alias clipin="xclip -selection c" # copy from stdin
+alias clipout="xclip -selection c -o" # paste to stdout
 
 # dotfiles aliases
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

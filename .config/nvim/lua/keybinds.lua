@@ -25,11 +25,6 @@ local function countcmd(command)
   end
 end
 
--- window arrangement
-noremap('n', '<leader>wh', wincmd 'H', { desc = 'Window: move left' })
-noremap('n', '<leader>wj', wincmd 'J', { desc = 'Window: move down' })
-noremap('n', '<leader>wl', wincmd 'K', { desc = 'Window: move up' })
-noremap('n', '<leader>wl', wincmd 'L', { desc = 'Window: move right' })
 
 -- window size
 noremap('n', '<C-S-h>', cmd 'vertical resize -3', { desc = 'Window: shrink horizontally' })
@@ -38,24 +33,25 @@ noremap('n', '<C-S-j>', cmd 'resize -1', { desc = 'Window: shrink vertically' })
 noremap('n', '<C-S-k>', cmd 'resize +1', { desc = 'Window: grow vertically' })
 
 -- tab commands
-map('n', '<leader>tq', countcmd 'tabclose', { desc = 'Tab: close (accepts count)' })
-map('n', '<leader>tn', cmd 'tabnew', { desc = 'Tab: new' })
+noremap('n', '<leader>tq', countcmd 'tabclose', { desc = 'Tab: close (accepts count)' })
+noremap('n', '<leader>tn', cmd 'tabnew', { desc = 'Tab: new' })
+noremap('n', '<leader>wt', wincmd 'T', { desc = 'Open window in new tab' })
 
 -- tab navigation
-map('n', '<Tab>', cmd 'tabnext', { desc = 'Tab: next' })
-map('n', '<S-Tab>', cmd 'tabprev', { desc = 'Tab: prev' })
-map('n', '<leader>tt', countcmd 'tabnext', { desc = 'Tab: next (accepts count)' })
+noremap('n', ']<Tab>', cmd 'tabnext', { desc = 'Tab: next' })
+noremap('n', '[<Tab>', cmd 'tabprev', { desc = 'Tab: prev' })
+noremap('n', '<leader>tt', countcmd 'tabnext', { desc = 'Tab: next (accepts count)' })
 
 -- tab arrangement
-map('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
-map('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
+noremap('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
+noremap('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
 
 -- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
 -- this keymap allows you to just press it twice instead of waiting
 noremap({ 'n', 'x' }, 'ss', 's')
 
 -- focus neotree file explorer
-map(
+noremap(
   'n',
   '<leader>e',
   cmd 'Neotree action=focus source=filesystem',
@@ -67,13 +63,13 @@ noremap('n', 'gj', cmd 'TSJJoin', { desc = 'Splitjoin join' })
 noremap('n', 'gS', cmd 'TSJSplit', { desc = 'Splitjoin split' })
 
 -- vscode specific keybinds
-if vscode then
+if Vscode then
   -- format code
   map(
     'n',
     '<leader>f',
     function()
-      vscode.action('editor.action.formatDocument', { desc = 'VS Code format code' })
+      Vscode.action('editor.action.formatDocument', { desc = 'VS Code format code' })
     end,
     { desc = 'Format document' }
   )
@@ -83,7 +79,7 @@ if vscode then
     'n',
     '<leader>r',
     function()
-      vscode.action('editor.action.rename')
+      Vscode.action('editor.action.rename')
     end,
     { desc = 'Rename symbol' }
   )
@@ -94,8 +90,8 @@ if vscode then
     '<leader>e',
     function()
       -- call is synchronous
-      vscode.call('workbench.view.explorer')
-      vscode.call('workbench.files.action.focusFilesExplorer')
+      Vscode.call('workbench.view.explorer')
+      Vscode.call('workbench.files.action.focusFilesExplorer')
     end,
     { desc = 'Focus file explorer' }
   )
@@ -104,7 +100,7 @@ if vscode then
     'n',
     '<Tab>',
     function()
-      vscode.action('workbench.action.nextEditor')
+      Vscode.action('workbench.action.nextEditor')
     end,
     { desc = 'Next tab' }
   )
@@ -113,7 +109,7 @@ if vscode then
     'n',
     '<S-Tab>',
     function()
-      vscode.action('workbench.action.previousEditor')
+      Vscode.action('workbench.action.previousEditor')
     end,
     { desc = 'Prev tab' }
   )
@@ -122,7 +118,7 @@ if vscode then
     'n',
     '<leader>q',
     function()
-      vscode.action('workbench.action.closeActiveEditor')
+      Vscode.action('workbench.action.closeActiveEditor')
     end,
     { desc = 'Close tab' }
   )
@@ -131,7 +127,7 @@ if vscode then
     'n',
     '<leader>o',
     function()
-      vscode.action('editor.action.organizeImports')
+      Vscode.action('editor.action.organizeImports')
     end,
     { desc = 'Organize imports' }
   )
