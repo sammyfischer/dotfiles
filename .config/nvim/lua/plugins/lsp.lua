@@ -40,10 +40,6 @@ local on_attach = function(args)
   end
 end
 
-vim.diagnostic.config({
-  virtual_text = true,
-})
-
 return {
   {
     'mason-org/mason.nvim',
