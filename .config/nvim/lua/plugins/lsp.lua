@@ -39,7 +39,7 @@ end
 
 if Vscode then
   -- just use vscode for language server features instead
-  return nil
+  return {}
 else
   return {
     {
