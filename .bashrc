@@ -15,8 +15,7 @@ color_green="\e[32m"
 color_reset="\e[0m"
 
 update_prompt() {
-  local git_branch
-  git_branch=$(__git_ps1 "%s")
+  local git_branch=$(__git_ps1 "%s")
   local git_prompt=""
   if [[ -n $git_branch ]]; then
     git_prompt=" ${color_green} ${git_branch}"
@@ -28,12 +27,19 @@ PROMPT_COMMAND=update_prompt
 
 # aliases
 alias c="clear"
-alias ls="ls --color=auto"
 alias grep="grep --color"
 
 # xclip aliases
-alias clipin="xclip -selection c" # copy from stdin
-alias clipout="xclip -selection c -o" # paste to stdout
+alias clipin="xclip -selection clipboard -in" # copy from stdin
+alias clipout="xclip -selection clipboard -out" # paste to stdout
+
+# eza defaults
+eza_flags="-a --git-ignore --icons=always --color-scale=all --color-scale-mode=gradient"
+alias ls="eza $eza_flags"
+# eza tree display defaults
+alias lst="eza $eza_flags -T --level=5"
+# eza long listing defaults
+alias lsl="eza $eza_flags -l --binary --group --header --git --total-size"
 
 # dotfiles aliases
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
