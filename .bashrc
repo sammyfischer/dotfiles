@@ -39,7 +39,7 @@ alias ls="eza $eza_flags"
 # eza tree display defaults
 alias lst="eza $eza_flags -T --level=5"
 # eza long listing defaults
-alias lsl="eza $eza_flags -l --binary --group --header --git --total-size"
+alias lsl="eza $eza_flags -l --binary --group --header --git"
 
 # dotfiles aliases
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
