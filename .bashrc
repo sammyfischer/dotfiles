@@ -23,7 +23,7 @@ update_prompt() {
     git_prompt=" ${green} ${git_branch}"
   fi
 
-  PS1="${reset}${cyan} \W${git_prompt} ${gray}${reset} "
+  PS1="${reset}${cyan} \W${git_prompt} ${gray}󰄾${reset} "
 }
 PROMPT_COMMAND=update_prompt
 
