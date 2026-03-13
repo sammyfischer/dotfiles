@@ -6,16 +6,20 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/scripts"
 export VISUAL="nvim"
 export EDITOR="nvim"
 
-source ~/scripts/git-completion.bash
-source ~/scripts/git-prompt.sh
+. ~/scripts/git-completion.bash
+. ~/scripts/git-prompt.sh
 
 update_prompt() {
-  local pink="\e[35m"
-  local blue="\e[34m"
-  local cyan="\e[36m"
-  local gray="\e[90m"
-  local green="\e[32m"
   local reset="\e[0m"
+  local black="\e[30m"
+  local red="\e[31m"
+  local green="\e[32m"
+  local yellow="\e[33m"
+  local blue="\e[34m"
+  local pink="\e[35m"
+  local cyan="\e[36m"
+  local white="\e[37m"
+  local gray="\e[90m"
 
   local git_branch=$(__git_ps1 "%s")
   local git_prompt=""
@@ -23,8 +27,11 @@ update_prompt() {
     git_prompt=" ${green} ${git_branch}"
   fi
 
-  PS1="${reset}${cyan} \W${git_prompt} ${gray}󰄾${reset} "
+  PS1="${reset}${cyan} \w${git_prompt} ${gray}󰄾${reset} "
+  PS2="${reset} ${gray}󰘍${reset} "
 }
+# limit dir in prompt to show last 2 parts of path
+PROMPT_DIRTRIM=2
 PROMPT_COMMAND=update_prompt
 
 # aliases
@@ -54,10 +61,10 @@ alias dotfetch="dot fetch -tpP --all"
 
 # git aliases
 alias st="git status"
-alias patch="git add -p && git status"
+alias patch="git add -p ; git status"
 alias commit="git commit -m"
 alias branch="git branch -vv"
-alias fetch="git fetch -tpP --all"
+alias fetch="git fetch -tp --all"
 alias clean="fetch ; ~/scripts/git-branch-clean.py"
 
 export NVM_DIR="$HOME/.nvm"
