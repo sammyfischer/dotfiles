@@ -58,6 +58,12 @@ xnoremap c "_c
 nnoremap C "_C
 xnoremap C "_C
 
+" make s not yank
+nnoremap s "_s
+xnoremap s "_s
+nnoremap S "_S
+xnoremap S "_S
+
 " make p (visual) not yank
 xnoremap p "_dP
 xnoremap P "_dP
@@ -79,23 +85,4 @@ nmap <tab> <cmd>bnext<cr>
 
 " exit term mode
 tnoremap <c-\><c-\> <c-\><c-n>
-
-" closes current quote, inserts comma, opens a new quote. helpful for writing
-" arrays of strings
-function! s:ArrayQuoteString() abort
-  let line = getline('.')
-  let col  = col('.') - 1
-  let before = strpart(line, 0, col)
-
-  " search backwards until there's a quote
-  let idx = match(before, "['\"`][^'\"`]*$")
-  if idx == -1
-    return ''
-  endif
-
-  let quote = before[idx]
-  return quote . ', ' . quote
-endfunction
-
-inoremap <expr> <C-'> <SID>ArrayQuoteString()
 
