@@ -48,9 +48,16 @@ alias ez="eza -a --git-ignore --icons=always --color-scale=all --color-scale-mod
 alias ezt="ez -T"
 alias ezl="ez -l"
 
-alias fz="fzf --scroll-off=3 --prompt='󰄾 ' --pointer=' ' --marker='󰄾'"
+alias fz="fzf \
+  --style=full \
+  --scroll-off=3 \
+  --prompt='󰄾 ' \
+  --pointer=' ' \
+  --marker='󰄾' \
+  --preview='batcat --color=always --style=numbers --line-range=:2000 {}'"
 alias fzp="fz --scheme=path"
 alias fzh="fz --scheme=history"
+eval "$(fzf --bash)"
 
 # dotfiles aliases
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
