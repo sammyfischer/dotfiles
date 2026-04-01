@@ -29,6 +29,7 @@ update_prompt() {
 
   PS1="${reset}${cyan} \w${git_prompt} ${gray}󰄾${reset} "
   PS2="${reset} ${gray}󰘍${reset} "
+  PS3="${reset} ${gray}󰄾${reset} "
 }
 # limit dir in prompt to show last 2 parts of path
 PROMPT_DIRTRIM=2
@@ -41,10 +42,19 @@ alias c="clear"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rip="rg -S --crlf"
-alias bat="batcat"
 alias clip="xclip -selection clipboard"
 
-alias ez="eza -a --git-ignore --icons=always --color-scale=all --color-scale-mode=gradient --level=5 --binary --group --header --git"
+alias ez="eza \
+  -a \
+  --git-ignore \
+  --icons=always \
+  --color-scale=all \
+  --color-scale-mode=gradient \
+  --level=5 \
+  --binary \
+  --group \
+  --header \
+  --git"
 alias ezt="ez -T"
 alias ezl="ez -l"
 
@@ -54,7 +64,7 @@ alias fz="fzf \
   --prompt='󰄾 ' \
   --pointer=' ' \
   --marker='󰄾' \
-  --preview='batcat --color=always --style=numbers --line-range=:2000 {}'"
+  --preview='bat --color=always --style=numbers --line-range=:50 {}'"
 alias fzp="fz --scheme=path"
 alias fzh="fz --scheme=history"
 eval "$(fzf --bash)"
@@ -66,6 +76,7 @@ alias dotadd="dot add -u ; dots"
 alias dotpatch="dot add -p ; dots"
 alias dotc="dot commit -m"
 alias dotfetch="dot fetch -tp --all"
+alias dotls="dot ls-files | fzp"
 
 # git aliases
 alias st="git status"

@@ -1,4 +1,10 @@
 [core]
-	editor = neovide --no-fork
+	editor = nvim
 [init]
 	defaultBranch = main
+[alias]
+	co = checkout
+	patch = add -p
+	pick = cherry-pick
+	graph = log --graph
+	mod = submodule
