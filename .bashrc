@@ -84,6 +84,7 @@ alias patch="git add -p ; git status"
 alias commit="git commit -m"
 alias branch="git branch -vv"
 alias fetch="git fetch -tp --all"
+alias ft="feature"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
