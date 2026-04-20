@@ -1,1 +1,2 @@
-hide_untracked = true
+[status]
+show_untracked = false

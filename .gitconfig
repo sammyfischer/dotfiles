@@ -1,6 +1,6 @@
 [core]
 	editor = nvim
-	pager = less -+X
+	pager = delta
 [init]
 	defaultBranch = main
 [alias]
@@ -11,3 +11,13 @@
 	graph = log --graph
   wt = worktree
 	mod = submodule
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+  pager = less -+X
+  file-style = blue bold ul
+  file-decoration-style = none
+  line-numbers = true
+	navigate = true
+[merge]
+	conflictStyle = zdiff3
