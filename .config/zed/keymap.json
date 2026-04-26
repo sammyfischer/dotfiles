@@ -1,0 +1,93 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // vim bindings
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-l": "vim::EndOfLine",
+      "shift-h": "vim::FirstNonWhitespace",
+      "h": "vim::WrappingLeft",
+      "l": "vim::WrappingRight",
+      "x": ["vim::SelectRegister", "+"],
+      "s a": "vim::PushAddSurrounds",
+      "s c": "vim::PushChangeSurrounds",
+      "s r": "vim::PushChangeSurrounds",
+      "s d": "vim::PushAddSurrounds",
+    },
+  },
+  // normal mode bindings
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "space r": "editor::Rename",
+      "space f": "editor::Format",
+      "g f": "file_finder::Toggle",
+      "tab": "vim::GoToTab",
+      "shift-tab": "vim::GoToPreviousTab",
+    },
+  },
+  // visual mode bindings
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      "shift-x": "vim::Exchange",
+    },
+  },
+  // quote and bracket text objects
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      "q": "vim::MiniQuotes",
+      "b": "vim::MiniBrackets",
+    },
+  },
+  // unbind default mapping for x and s (dl and cl do the exact same thing)
+  {
+    "context": "vim_mode == normal",
+    "unbind": {
+      "x": "vim::DeleteRight",
+      "s": "vim::Substitute",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "unbind": {
+      "x": "vim::VisualDelete",
+      "s": "vim::Substitute",
+    },
+  },
+  // unbind default ctrl-j and ctrl-k
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-j": "workspace::ToggleBottomDock",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "ctrl-j": "vim::Down",
+    },
+  },
+  // make ctrl-j and ctrl-k move up/down completion menus and pickers
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+    },
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
+]
