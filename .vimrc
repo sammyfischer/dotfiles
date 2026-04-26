@@ -15,7 +15,6 @@ set nowrap
 set scrolloff=5
 
 " cosmetic
-set guifont=CaskaydiaCove\ NF
 set termguicolors
 set background=dark " used by some themes to set dark/light mode
 
@@ -30,15 +29,15 @@ set splitright
 
 " KEYBINDS
 
+" move up/down visually
+noremap j gj
+noremap k gk
+
 " home
-nnoremap H ^
-xnoremap H ^
-onoremap H ^
+noremap H g^
 
 " end
-nnoremap L $
-xnoremap L $
-onoremap L $
+noremap L g$
 
 " x to cut
 nnoremap x d
@@ -64,9 +63,29 @@ xnoremap s "_s
 nnoremap S "_S
 xnoremap S "_S
 
+" 'P' behaves weirdly when the ends at the end of a line. that case needs to
+" be handled differently
+function! VisualPaste()
+  " col position at end of the visual mode selection
+  let l:end_col = col("'>")
+  " length of the last line in visual mode selection
+  let l:line_length = col([line("'>"), "$"])
+
+  " delete into black hole in either case
+  normal! gv"_d
+
+  if l:end_col >= l:line_length - 1
+    " if selection is at (or after) eol, paste after
+    normal! p
+  else
+    " else, paste before
+    normal! P
+  endif
+endfunction
+
 " make p (visual) not yank
-xnoremap p "_dP
-xnoremap P "_dP
+xnoremap p :<c-u>call VisualPaste()<cr>
+xnoremap P :<c-u>call VisualPaste()<cr>
 
 " Y to yank and keep visual mode selection
 xnoremap Y ygv
