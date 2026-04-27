@@ -14,7 +14,7 @@
       "shift-h": "vim::FirstNonWhitespace",
       "h": "vim::WrappingLeft",
       "l": "vim::WrappingRight",
-      "x": ["vim::SelectRegister", "+"],
+      "x": ["workspace::SendKeystrokes", "\"+"],
       "s a": "vim::PushAddSurrounds",
       "s c": "vim::PushChangeSurrounds",
       "s r": "vim::PushChangeSurrounds",
