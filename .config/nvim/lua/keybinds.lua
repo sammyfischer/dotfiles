@@ -46,10 +46,6 @@ noremap('n', '<leader>tt', countcmd 'tabnext', { desc = 'Tab: next (accepts coun
 noremap('n', '<leader>th', cmd '-tabmove', { desc = 'Tab: swap left' })
 noremap('n', '<leader>tl', cmd '+tabmove', { desc = 'Tab: swap right' })
 
--- mini.surround uses s as its first keystroke, so s for substitute requires you to wait a bit.
--- this keymap allows you to just press it twice instead of waiting
-noremap({ 'n', 'x' }, 'ss', '"_s')
-
 -- focus neotree file explorer
 noremap(
   'n',

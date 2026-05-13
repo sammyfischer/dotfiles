@@ -10,17 +10,14 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "shift-l": "vim::EndOfLine",
-      "shift-h": "vim::FirstNonWhitespace",
       "h": "vim::WrappingLeft",
       "l": "vim::WrappingRight",
+      "shift-h": "vim::FirstNonWhitespace",
+      "shift-l": "vim::EndOfLine",
       "x": ["workspace::SendKeystrokes", "\"+"],
-      "s a": "vim::PushAddSurrounds",
-      "s c": "vim::PushChangeSurrounds",
-      "s r": "vim::PushChangeSurrounds",
-      "s d": "vim::PushAddSurrounds",
     },
   },
+
   // normal mode bindings
   {
     "context": "vim_mode == normal && !menu",
@@ -30,15 +27,22 @@
       "g f": "file_finder::Toggle",
       "tab": "vim::GoToTab",
       "shift-tab": "vim::GoToPreviousTab",
+      "s a": "vim::PushAddSurrounds",
+      "s c": "vim::PushChangeSurrounds",
+      "s r": "vim::PushChangeSurrounds",
+      "s d": "vim::PushDeleteSurrounds",
     },
   },
+
   // visual mode bindings
   {
     "context": "vim_mode == visual && !menu",
     "bindings": {
       "shift-x": "vim::Exchange",
+      "s": "vim::PushAddSurrounds",
     },
   },
+
   // quote and bracket text objects
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
@@ -47,7 +51,36 @@
       "b": "vim::MiniBrackets",
     },
   },
-  // unbind default mapping for x and s (dl and cl do the exact same thing)
+
+  // make ctrl-j and ctrl-k move up/down completion menus and pickers
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+    },
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
+
+  // project panel
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "s": "project_panel::OpenSplitHorizontal",
+    },
+  },
+
+  // UNBINDS
   {
     "context": "vim_mode == normal",
     "unbind": {
@@ -62,7 +95,6 @@
       "s": "vim::Substitute",
     },
   },
-  // unbind default ctrl-j and ctrl-k
   {
     "context": "Workspace",
     "unbind": {
@@ -75,19 +107,32 @@
       "ctrl-j": "vim::Down",
     },
   },
-  // make ctrl-j and ctrl-k move up/down completion menus and pickers
   {
-    "context": "Picker > Editor",
-    "bindings": {
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrevious",
+    "context": "vim_operator == d",
+    "unbind": {
+      "s": "vim::PushDeleteSurrounds",
     },
   },
   {
-    "context": "Editor && (showing_code_actions || showing_completions)",
-    "bindings": {
-      "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrevious",
+    "context": "vim_operator == c",
+    "unbind": {
+      "s": ["vim::PushChangeSurrounds", {}],
+    },
+  },
+  {
+    "context": "vim_operator == y",
+    "unbind": {
+      "s": ["vim::PushAddSurrounds", {}],
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "shift-r": "project_panel::Rename",
+      "shift-d": "project_panel::Delete",
+      "%": "project_panel::NewFile",
+      "d": "project_panel::NewDirectory",
+      "o": "project_panel::OpenSplitHorizontal",
     },
   },
 ]
