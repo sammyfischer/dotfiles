@@ -70,17 +70,17 @@ alias fzh="fz --scheme=history"
 eval "$(fzf --bash)"
 
 # git/feature aliases
+eval "$(feature completions bash)"
 alias ft="feature"
-alias st="git status"
-alias patch="git add -p ; git status"
-alias commit="git commit -m"
+alias st="ft status"
+alias patch="git add -p ; ft status"
 alias branch="git branch -vv"
 alias fetch="git fetch -tp --all"
 
 # dotfiles aliases
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotf="ft --git-dir=$HOME/.dotfiles --work-tree=$HOME --config=$HOME/.dotfiles/feature.toml"
-alias dots="dotf st"
+alias dots="dotf status"
 alias dotadd="dot add -u ; dots"
 alias dotpatch="dot add -p ; dots"
 alias dotc="dotf commit"

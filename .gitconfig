@@ -21,3 +21,9 @@
 	navigate = true
 [merge]
 	conflictStyle = zdiff3
+[format]
+	pretty = format:%C(auto)%h%d %C(reset)%s %C(dim)(%an, %ar)
+[log]
+	abbrevCommit = yes
+[feature "format"]
+	graph = format:%C(auto)%h%d %C(green)%an %C(blue)%ar %C(reset)%s
