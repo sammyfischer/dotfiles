@@ -44,20 +44,6 @@ alias grep="grep --color=auto"
 alias rip="rg -S --crlf"
 alias clip="xclip -selection clipboard"
 
-alias ez="eza \
-  -a \
-  --git-ignore \
-  --icons=always \
-  --color-scale=all \
-  --color-scale-mode=gradient \
-  --level=5 \
-  --binary \
-  --group \
-  --header \
-  --git"
-alias ezt="ez -T"
-alias ezl="ez -l"
-
 alias fz="fzf \
   --style=full \
   --scroll-off=3 \
