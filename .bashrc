@@ -78,15 +78,13 @@ alias branch="git branch -vv"
 alias fetch="git fetch -tp --all"
 
 # dotfiles aliases
-alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias dotf="ft --git-dir=$HOME/.dotfiles --work-tree=$HOME --config=$HOME/.dotfiles/feature.toml"
+alias dotf="ft --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dots="dotf status"
 alias dotadd="dot add -u ; dots"
 alias dotpatch="dot add -p ; dots"
 alias dotc="dotf commit"
 alias dotsync="dotf sync"
 alias dotfetch="dot fetch -tp --all"
-alias dotls="dot ls-files | fzp"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
