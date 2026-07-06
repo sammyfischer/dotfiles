@@ -8,7 +8,7 @@
 	co = checkout
 	patch = add -p
 	pick = cherry-pick
-	graph = log --graph
+  graph = log --graph --pretty='format:%C(auto)%h%d %C(green)%an %C(blue)%ar %C(reset)%s'
   wt = worktree
 	mod = submodule
 [interactive]
