@@ -14,7 +14,8 @@
       "l": "vim::WrappingRight",
       "shift-h": "vim::FirstNonWhitespace",
       "shift-l": "vim::EndOfLine",
-      "x": ["workspace::SendKeystrokes", "\"+"],
+      "+": ["workspace::SendKeystrokes", "\"+"],
+      "_": ["workspace::SendKeystrokes", "\"_"],
     },
   },
 
@@ -27,10 +28,7 @@
       "g f": "file_finder::Toggle",
       "tab": "vim::GoToTab",
       "shift-tab": "vim::GoToPreviousTab",
-      "s a": "vim::PushAddSurrounds",
-      "s c": "vim::PushChangeSurrounds",
-      "s r": "vim::PushChangeSurrounds",
-      "s d": "vim::PushDeleteSurrounds",
+      "s": "vim::PushAddSurrounds",
     },
   },
 
@@ -50,6 +48,20 @@
       "q": "vim::MiniQuotes",
       "b": "vim::MiniBrackets",
     },
+  },
+  
+  // vim surround
+  {
+    "context": "vim_operator == d",
+    "bindings": {
+      "s": "vim::PushDeleteSurrounds",
+    }
+  },
+  {
+    "context": "vim_operator == c",
+    "bindings": {
+      "s": "vim::PushChangeSurrounds",
+    }
   },
 
   // make ctrl-j and ctrl-k move up/down completion menus and pickers
@@ -77,7 +89,22 @@
       "a": "project_panel::NewFile",
       "shift-a": "project_panel::NewDirectory",
       "s": "project_panel::OpenSplitHorizontal",
+      "y": "project_panel::Copy",
+      "x": "project_panel::Cut",
+      "p": "project_panel::Paste",
     },
+  },
+
+  // focus panels
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-1": "editor::ToggleFocus",
+      "alt-2": "project_panel::ToggleFocus",
+      "alt-3": "outline_panel::ToggleFocus",
+      "alt-4": "git_panel::ToggleFocus",
+      "alt-`": "workspace::ToggleBottomDock",
+    }
   },
 
   // UNBINDS
@@ -96,27 +123,9 @@
     },
   },
   {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-j": "workspace::ToggleBottomDock",
-    },
-  },
-  {
     "context": "VimControl && !menu",
     "unbind": {
       "ctrl-j": "vim::Down",
-    },
-  },
-  {
-    "context": "vim_operator == d",
-    "unbind": {
-      "s": "vim::PushDeleteSurrounds",
-    },
-  },
-  {
-    "context": "vim_operator == c",
-    "unbind": {
-      "s": ["vim::PushChangeSurrounds", {}],
     },
   },
   {
@@ -135,4 +144,25 @@
       "o": "project_panel::OpenSplitHorizontal",
     },
   },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-j": "workspace::ToggleBottomDock",
+      "ctrl-shift-e": "project_panel::ToggleFocus",
+      "ctrl-shift-g": "git_panel::ToggleFocus",
+      "ctrl-shift-b": "outline_panel::ToggleFocus",
+      "alt-2": ["workspace::ActivatePane", 1],
+      "alt-3": ["workspace::ActivatePane", 2],
+      "alt-4": ["workspace::ActivatePane", 3],
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "alt-1": ["pane::ActivateItem", 0],
+      "alt-2": ["pane::ActivateItem", 1],
+      "alt-3": ["pane::ActivateItem", 2],
+      "alt-4": ["pane::ActivateItem", 3],
+    }
+  }
 ]
